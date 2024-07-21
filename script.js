@@ -29,3 +29,15 @@ function Cell() {
 
     return { select, getValue };
 }
+
+function GameController( playerOneName = "Player One",
+                         playerTwoName = "Player Two") {
+
+    const board = Gameboard();
+
+    const players = [
+        createPlayer(playerOneName, "X"),
+        createPlayer(playerTwoName, "O")
+    ];
+    
+}

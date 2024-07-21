@@ -13,3 +13,7 @@ function Gameboard() {
         }
     }
 }
+
+function createPlayer(name) {
+    return {name};
+}

@@ -13,12 +13,12 @@ function Gameboard() {
     }
 
     const selectCell = (row, column) => {
-        console.log(game.getActivePlayer());
+        //console.log(game.getActivePlayer());
         if (board[row][column].getValue() !== 0) return;
         board[row][column].select(game.getActivePlayer());
-        console.log(game.getActivePlayer().value);
-        console.log(typeof(board[row][column]));
-        console.log(board[row][column].getValue());
+        //console.log(game.getActivePlayer().value);
+        //console.log(typeof(board[row][column]));
+        //console.log(board[row][column].getValue());
 
     }
 
@@ -67,20 +67,23 @@ function GameController( playerOneName = "Player One",
 
     const printNewRound = () => {
         board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn.`)
+        console.log(`${getActivePlayer().name}'s turn.`);
+        let row = prompt("What row would you like to mark on?");
+        let column = prompt("What column would you like to mark on?");
+        playRound(row, column);
     }
     
     const playRound = (row, column) => {
-        console.log(`${getActivePlayer.name} placed an ${getActivePlayer.value}
+        board.selectCell(row, column);
+        console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value}
             on row ${row}, column ${column}.`)
         
         switchActivePlayer();
         printNewRound();
     }
 
-    printNewRound();
-
-    return { playRound, getActivePlayer, board };
+    return { printNewRound, playRound, getActivePlayer };
 }
 
 const game = GameController();
+game.printNewRound();

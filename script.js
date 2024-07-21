@@ -7,21 +7,13 @@ function Gameboard() {
 
     for (let i = 0; i < rows; i++) {
         board[i] = [];
-        for (let j = 0; i < columns; i++) {
+        for (let j = 0; j < columns; j++) {
             // Cell is not yet defined
             board[i].push(Cell());
         }
     }
 
-    const selectCell = (row, column, player) => {
-        /*
-        const availableCells = board.filter(row => {
-            for (j = 0; j < columns; j++) {
-                row[j].getValue === 0;
-            }
-        }
-        )
-        */
+    const selectCell = (row, column, player = GameController.getActivePlayer()) => {
         if (board[row][column] !== 0) return;
         board[row][column].select(player);
 
@@ -62,6 +54,30 @@ function GameController( playerOneName = "Player One",
         createPlayer(playerTwoName, "O")
     ];
 
+    let activePlayer = players[0];
 
+    const switchActivePlayer = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    }
+
+    const getActivePlayer = () => activePlayer;
+
+    const printNewRound = () => {
+        board.printBoard();
+        console.log(`${getActivePlayer().name}'s turn.`)
+    }
     
+    const playRound = (row, column) => {
+        console.log(`${getActivePlayer.name} placed an ${getActivePlayer.value}
+            on row ${row}, column ${column}.`)
+        
+        switchActivePlayer();
+        printNewRound();
+    }
+
+    printNewRound();
+
+    return { playRound, getActivePlayer }
 }
+
+const game = GameController();

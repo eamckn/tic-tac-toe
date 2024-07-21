@@ -14,6 +14,18 @@ function Gameboard() {
     }
 }
 
-function createPlayer(name) {
-    return {name};
+function createPlayer(name, value) {
+    return { name, value };
+}
+
+function Cell() {
+    let value = 0;
+
+    const select = (player) => {
+        value = player.value;
+    }
+
+    const getValue = () => value;
+
+    return { select, getValue };
 }

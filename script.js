@@ -6,9 +6,10 @@ function Gameboard() {
     const board = []
 
     for (let i = 0; i < rows; i++) {
+        board[i] = [];
         for (let j = 0; i < columns; i++) {
             // Cell is not yet defined
-            board.push(Cell())
+            board[i].push(Cell());
         }
     }
 }

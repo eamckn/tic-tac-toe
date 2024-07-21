@@ -14,15 +14,26 @@ function Gameboard() {
     }
 
     const selectCell = (row, column, player) => {
-
+        /*
         const availableCells = board.filter(row => {
             for (j = 0; j < columns; j++) {
                 row[j].getValue === 0;
             }
         }
         )
+        */
+        if (board[row][column] !== 0) return;
+        board[row][column].select(player);
 
     }
+
+    const printBoard = () => {
+        const boardWithCellValues = board.map((row) => row.map((cell) => 
+        cell.getValue()));
+        console.log(boardWithCellValues);
+    }
+
+    return { selectCell, printBoard };
 }
 
 function createPlayer(name, value) {

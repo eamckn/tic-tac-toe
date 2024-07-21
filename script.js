@@ -12,10 +12,13 @@ function Gameboard() {
         }
     }
 
-    const selectCell = (row, column, player = game.getActivePlayer) => {
-        console.log(Cell().select(player))
-        if (board[row][column] !== 0) return;
-        board[row][column].select(player);
+    const selectCell = (row, column) => {
+        console.log(game.getActivePlayer());
+        if (board[row][column].getValue() !== 0) return;
+        board[row][column].select(game.getActivePlayer());
+        console.log(game.getActivePlayer().value);
+        console.log(typeof(board[row][column]));
+        console.log(board[row][column].getValue());
 
     }
 
@@ -77,7 +80,7 @@ function GameController( playerOneName = "Player One",
 
     printNewRound();
 
-    return { playRound, getActivePlayer };
+    return { playRound, getActivePlayer, board };
 }
 
 const game = GameController();

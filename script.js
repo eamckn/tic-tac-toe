@@ -12,6 +12,17 @@ function Gameboard() {
             board[i].push(Cell());
         }
     }
+
+    const selectCell = (row, column, player) => {
+
+        const availableCells = board.filter(row => {
+            for (j = 0; j < columns; j++) {
+                row[j].getValue === 0;
+            }
+        }
+        )
+
+    }
 }
 
 function createPlayer(name, value) {
@@ -31,7 +42,7 @@ function Cell() {
 }
 
 function GameController( playerOneName = "Player One",
-                         playerTwoName = "Player Two") {
+                         playerTwoName = "Player Two" ) {
 
     const board = Gameboard();
 
@@ -39,5 +50,7 @@ function GameController( playerOneName = "Player One",
         createPlayer(playerOneName, "X"),
         createPlayer(playerTwoName, "O")
     ];
+
+
     
 }

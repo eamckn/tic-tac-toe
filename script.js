@@ -8,12 +8,12 @@ function Gameboard() {
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-            // Cell is not yet defined
             board[i].push(Cell());
         }
     }
 
-    const selectCell = (row, column, player = GameController.getActivePlayer()) => {
+    const selectCell = (row, column, player = game.getActivePlayer) => {
+        console.log(Cell().select(player))
         if (board[row][column] !== 0) return;
         board[row][column].select(player);
 
@@ -77,7 +77,7 @@ function GameController( playerOneName = "Player One",
 
     printNewRound();
 
-    return { playRound, getActivePlayer }
+    return { playRound, getActivePlayer };
 }
 
 const game = GameController();

@@ -81,10 +81,12 @@ const GameController = (function( playerOneName = "Player One",
         board.selectCell(row, column);
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
+            board.printBoard();
             console.log(`${getActivePlayer().name} wins!`)
             return;
         }
         if (isTie()) {
+            board.printBoard();
             console.log("It's a tie! You two should run it back.");
             return;
         }
@@ -148,7 +150,7 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { printNewRound, playRound, getActivePlayer, isWinner };
+    return { printNewRound, getActivePlayer, };
 })();
 
 //const game = GameController();

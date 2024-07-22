@@ -15,7 +15,7 @@ function Gameboard() {
     const selectCell = (row, column) => {
         //console.log(game.getActivePlayer());
         if (board[row][column].getValue() !== 0) return;
-        board[row][column].select(game.getActivePlayer());
+        board[row][column].select(GameController.getActivePlayer());
         //console.log(game.getActivePlayer().value);
         //console.log(typeof(board[row][column]));
         //console.log(board[row][column].getValue());
@@ -28,7 +28,7 @@ function Gameboard() {
         console.table(boardWithCellValues);
     }
 
-    return { selectCell, printBoard };
+    return { selectCell, printBoard, board };
 }
 
 function createPlayer(name, value) {
@@ -47,7 +47,7 @@ function Cell() {
     return { select, getValue };
 }
 
-function GameController( playerOneName = "Player One",
+const GameController = (function( playerOneName = "Player One",
                          playerTwoName = "Player Two" ) {
 
     const board = Gameboard();
@@ -78,12 +78,76 @@ function GameController( playerOneName = "Player One",
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value}
             on row ${row}, column ${column}.`)
         
+        if (isWinner()) {
+            console.log(`${getActivePlayer().name} wins!`)
+            return;
+        }
+        if (isTie()) {
+            console.log("It's a tie! You two should run it back.");
+            return;
+        }
         switchActivePlayer();
         printNewRound();
     }
 
-    return { printNewRound, playRound, getActivePlayer };
-}
+    const isWinner = () => {
+        let boardGrid = board.board;
+        //console.log(boardGrid);
+        for (const player of players) {
+            //console.log(player.value)
+            // Checking 3 in a row along rows
+            if (((boardGrid[0][0].getValue() === player.value) &&
+                 (boardGrid[0][1].getValue() === player.value) &&
+                 (boardGrid[0][2].getValue() === player.value))
+                 ||
+                ((boardGrid[1][0].getValue() === player.value) &&
+                 (boardGrid[1][1].getValue() === player.value) &&
+                 (boardGrid[1][2].getValue() === player.value))
+                 ||
+                ((boardGrid[2][0].getValue() === player.value) &&
+                 (boardGrid[2][1].getValue() === player.value) &&
+                 (boardGrid[2][2].getValue() === player.value))
+                 ||
+            // Checking 3 in a row along columns
+                ((boardGrid[0][0].getValue() === player.value) &&
+                 (boardGrid[1][0].getValue() === player.value) &&
+                 (boardGrid[2][0].getValue() === player.value))
+                 ||
+                ((boardGrid[0][1].getValue() === player.value) &&
+                 (boardGrid[1][1].getValue() === player.value) &&
+                 (boardGrid[2][1].getValue() === player.value))
+                 ||
+                ((boardGrid[0][2].getValue() === player.value) &&
+                 (boardGrid[1][2].getValue() === player.value) &&
+                 (boardGrid[2][2].getValue() === player.value))
+                 ||
+            // Checking 3 in a row across diagonals
+                ((boardGrid[0][0].getValue() === player.value) &&
+                 (boardGrid[1][1].getValue() === player.value) &&
+                 (boardGrid[2][2].getValue() === player.value))
+                 ||
+                ((boardGrid[0][2].getValue() === player.value) &&
+                 (boardGrid[1][1].getValue() === player.value) &&
+                 (boardGrid[2][0].getValue() === player.value))) {
+                    return true;
+                }            
+        }
+    }
 
-const game = GameController();
-game.printNewRound();
+    const isTie = () => {
+        let boardGrid = board.board;
+        for (let i = 0; i < boardGrid.length; i++) {
+            for (let j = 0; j < boardGrid[i].length; j++) {
+                if (boardGrid[i][j].getValue() === 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    return { printNewRound, playRound, getActivePlayer, isWinner };
+})();
+
+//const game = GameController();
+GameController.printNewRound();

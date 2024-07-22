@@ -15,15 +15,14 @@ function Gameboard() {
     const selectCell = (row, column) => {
         if (board[row][column].getValue() !== 0) return;
         board[row][column].select(GameController.getActivePlayer());
-
     }
 
     const printBoard = () => {
-        const boardWithCellValues = board.map((row) => row.map((cell) => 
-        cell.getValue()));
+
+        const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
+
         console.table(boardWithCellValues);
     }
-
     return { selectCell, printBoard, board };
 }
 
@@ -34,9 +33,7 @@ function createPlayer(name, value) {
 function Cell() {
     let value = 0;
 
-    const select = (player) => {
-        value = player.value;
-    }
+    const select = (player) => value = player.value;
 
     const getValue = () => value;
 
@@ -44,8 +41,7 @@ function Cell() {
 }
 
 const GameController = (function( playerOneName = "Player One",
-                         playerTwoName = "Player Two" ) {
-
+                                  playerTwoName = "Player Two" ) {
     const board = Gameboard();
 
     const players = [
@@ -92,9 +88,7 @@ const GameController = (function( playerOneName = "Player One",
 
     const isWinner = () => {
         let boardGrid = board.board;
-        //console.log(boardGrid);
         for (const player of players) {
-            //console.log(player.value)
             // Checking 3 in a row along rows
             if (((boardGrid[0][0].getValue() === player.value) &&
                  (boardGrid[0][1].getValue() === player.value) &&
@@ -145,7 +139,6 @@ const GameController = (function( playerOneName = "Player One",
         }
         return true;
     }
-
     return { printNewRound, getActivePlayer, };
 })();
 

@@ -137,8 +137,8 @@ const GameController = (function( playerOneName = "Player One",
         }
         return true;
     }
-    return { printNewRound, getActivePlayer, };
+    return { printNewRound, getActivePlayer };
 })();
 
 //const game = GameController();
-GameController.printNewRound();
+//GameController.printNewRound();

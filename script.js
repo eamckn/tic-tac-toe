@@ -18,9 +18,7 @@ function Gameboard() {
     }
 
     const printBoard = () => {
-
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
-
         console.table(boardWithCellValues);
     }
     return { selectCell, printBoard, board };

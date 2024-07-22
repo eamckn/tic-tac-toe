@@ -66,8 +66,12 @@ const GameController = (function( playerOneName = "Player One",
     const getActivePlayer = () => activePlayer;
 
     const printNewRound = () => {
-        board.printBoard();
         console.log(`${getActivePlayer().name}'s turn.`);
+        board.printBoard();
+        askForUserInput();
+    }
+
+    const askForUserInput = () => {
         let row = prompt("What row would you like to mark on?");
         let column = prompt("What column would you like to mark on?");
         playRound(row, column);
@@ -75,9 +79,7 @@ const GameController = (function( playerOneName = "Player One",
     
     const playRound = (row, column) => {
         board.selectCell(row, column);
-        console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value}
-            on row ${row}, column ${column}.`)
-        
+        console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
             console.log(`${getActivePlayer().name} wins!`)
             return;

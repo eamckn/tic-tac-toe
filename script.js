@@ -140,5 +140,48 @@ const GameController = (function( playerOneName = "Player One",
     return { printNewRound, getActivePlayer };
 })();
 
+const pageDisplay =  (function() {
+
+    const boardContainer = document.querySelector(".board-container");
+
+    // Tiles
+    /*
+    const tile_00 = document.querySelector("div[data-rowcol = '0-0']");
+    const tile_01 = document.querySelector("div[data-rowcol = '0-1']");
+    const tile_02 = document.querySelector("div[data-rowcol = '0-2']");
+    const tile_10 = document.querySelector("div[data-rowcol = '1-0']");
+    const tile_11 = document.querySelector("div[data-rowcol = '1-1']");
+    const tile_12 = document.querySelector("div[data-rowcol = '1-2']");
+    const tile_20 = document.querySelector("div[data-rowcol = '2-0']");
+    const tile_21 = document.querySelector("div[data-rowcol = '2-1']");
+    const tile_22 = document.querySelector("div[data-rowcol = '2-2']");
+    */
+
+    const tiles = document.querySelectorAll(".tile");
+    const tilesArray = Array.from(tiles);
+
+
+    return { boardContainer, tilesArray };
+
+})();
+
 //const game = GameController();
 //GameController.printNewRound();
+
+//
+
+/*
+
+Let's think carefully about how I want to do this:
+
+- I can create the board in html like I have
+- I want to create a function that will populate each grid tiles
+  with the correct cell values from Gameboard().board
+    - To do this, in my display object, I'll iterate over the 2d array,
+      and for each element, extract their cell value and make it the textContent
+      for a given div
+    - I already have an array of divs, so I can make it a 2d array to match them up easier
+- I want to add an event listener to the container upon click that will take the player's
+  value, and populate both corresponding tile and the array with the value
+
+*/

@@ -13,12 +13,8 @@ function Gameboard() {
     }
 
     const selectCell = (row, column) => {
-        //console.log(game.getActivePlayer());
         if (board[row][column].getValue() !== 0) return;
         board[row][column].select(GameController.getActivePlayer());
-        //console.log(game.getActivePlayer().value);
-        //console.log(typeof(board[row][column]));
-        //console.log(board[row][column].getValue());
 
     }
 

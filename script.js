@@ -61,11 +61,13 @@ const GameController = (function( playerOneName = "Player One",
         //askForUserInput();
     }
 
+    /*
     const askForUserInput = () => {
         let row = prompt("What row would you like to mark on?");
         let column = prompt("What column would you like to mark on?");
         playRound(row, column);
     }
+    */
     
     const playRound = (row, column) => {
         board.selectCell(row, column);
@@ -178,18 +180,9 @@ const pageDisplay =  (function() {
         }
     }
 
-    const initializeTiles = () => {
-        for (let i = 0; i < GameController.board.board.length; i++) {
-            for (let j = 0; j < GameController.board.board[i].length; j++) {
-                tilesArray2d[i][j].textContent = "";
-                //console.log(tilesArray2d[i][j]);
-            }
-        }
-    }
-
     //console.log(tilesArray2d);
 
-    return { boardContainer, tilesArray2d, initializeTiles };
+    return { boardContainer, tilesArray2d  };
 
 })();
 

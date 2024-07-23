@@ -57,20 +57,18 @@ const GameController = (function( playerOneName = "Player One",
 
     const populateTile = (event) => {
         let selectedTile = event.target;
-        if ((selectedTile.textContent !== "X") && (selectedTile.textContent !== "O")) {
-            selectedTile.textContent = getActivePlayer().value;
-            let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
-            let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
-            populateBoardArray(selectedTileRow, selectedTileCol)
+        let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
+        let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
+        //console.log(typeof(selectedTileCol));
+        //console.log(board.board[selectedTileRow][selectedTileCol].getValue());
+        if ((board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
+            board.selectCell(selectedTileRow, selectedTileCol);
+            playRound(selectedTileRow, selectedTileCol);
+            selectedTile.textContent = board.board[selectedTileRow][selectedTileCol].getValue();
         }
-    }
-
-    const populateBoardArray = (selectedTileRow, selectedTileCol) => {
-        playRound(selectedTileRow, selectedTileCol);
     }
     
     const playRound = (row, column) => {
-        board.selectCell(row, column);
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
             board.printBoard();
@@ -170,5 +168,4 @@ const pageDisplay =  (function() {
     }
 
     return { boardContainer, tilesArray2d  };
-
 })();

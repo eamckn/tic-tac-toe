@@ -58,16 +58,7 @@ const GameController = (function( playerOneName = "Player One",
     const printNewRound = () => {
         console.log(`${getActivePlayer().name}'s turn.`);
         board.printBoard();
-        //askForUserInput();
     }
-
-    /*
-    const askForUserInput = () => {
-        let row = prompt("What row would you like to mark on?");
-        let column = prompt("What column would you like to mark on?");
-        playRound(row, column);
-    }
-    */
     
     const playRound = (row, column) => {
         board.selectCell(row, column);
@@ -143,14 +134,11 @@ const GameController = (function( playerOneName = "Player One",
     }
 
     const populateTile = (event) => {
-        //console.log(event.target)
         let selectedTile = event.target;
         if ((selectedTile.textContent !== "X") && (selectedTile.textContent !== "O")) {
             selectedTile.textContent = getActivePlayer().value;
             let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
-            //console.log(selectedTileRow);
             let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
-            //console.log(selectedTileCol);
             populateBoardArray(selectedTileRow, selectedTileCol)
         }
     }
@@ -174,9 +162,6 @@ const pageDisplay =  (function() {
 
     const tilesArray2d = [];
 
-    //console.log(GameController.board.board.length);
-    //console.log(GameController.board.board[0].length);
-
     for (let i = 0; i < GameController.board.board.length; i++) {
         tilesArray2d[i] = [];
         for (let j = 0; j < GameController.board.board[i].length; j++) {
@@ -184,29 +169,6 @@ const pageDisplay =  (function() {
         }
     }
 
-    //console.log(tilesArray2d);
-
     return { boardContainer, tilesArray2d  };
 
 })();
-
-//const game = GameController();
-//GameController.printNewRound();
-
-//
-
-/*
-
-Let's think carefully about how I want to do this:
-
-- I can create the board in html like I have
-- I want to create a function that will populate each grid tiles
-  with the correct cell values from Gameboard().board
-    - To do this, in my display object, I'll iterate over the 2d array,
-      and for each element, extract their cell value and make it the textContent
-      for a given div
-    - I already have an array of divs, so I can make it a 2d array to match them up easier
-- I want to add an event listener to the container upon click that will take the player's
-  value, and populate both corresponding tile and the array with the value
-
-*/

@@ -123,6 +123,7 @@ const GameController = (function( playerOneName = "Player One",
                 ((boardGrid[0][2].getValue() === player.value) &&
                  (boardGrid[1][1].getValue() === player.value) &&
                  (boardGrid[2][0].getValue() === player.value))) {
+                    pageDisplay.boardContainer.removeEventListener('click', populateTile);
                     return true;
                 }            
         }
@@ -137,6 +138,7 @@ const GameController = (function( playerOneName = "Player One",
                 }
             }
         }
+        pageDisplay.boardContainer.removeEventListener('click', populateTile);
         return true;
     }
 

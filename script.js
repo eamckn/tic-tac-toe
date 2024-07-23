@@ -55,9 +55,18 @@ const GameController = (function( playerOneName = "Player One",
 
     const getActivePlayer = () => activePlayer;
 
-    const printNewRound = () => {
-        console.log(`${getActivePlayer().name}'s turn.`);
-        board.printBoard();
+    const populateTile = (event) => {
+        let selectedTile = event.target;
+        if ((selectedTile.textContent !== "X") && (selectedTile.textContent !== "O")) {
+            selectedTile.textContent = getActivePlayer().value;
+            let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
+            let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
+            populateBoardArray(selectedTileRow, selectedTileCol)
+        }
+    }
+
+    const populateBoardArray = (selectedTileRow, selectedTileCol) => {
+        playRound(selectedTileRow, selectedTileCol);
     }
     
     const playRound = (row, column) => {
@@ -75,6 +84,11 @@ const GameController = (function( playerOneName = "Player One",
         }
         switchActivePlayer();
         printNewRound();
+    }
+
+    const printNewRound = () => {
+        console.log(`${getActivePlayer().name}'s turn.`);
+        board.printBoard();
     }
 
     const isWinner = () => {
@@ -131,20 +145,6 @@ const GameController = (function( playerOneName = "Player One",
         }
         pageDisplay.boardContainer.removeEventListener('click', populateTile);
         return true;
-    }
-
-    const populateTile = (event) => {
-        let selectedTile = event.target;
-        if ((selectedTile.textContent !== "X") && (selectedTile.textContent !== "O")) {
-            selectedTile.textContent = getActivePlayer().value;
-            let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
-            let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
-            populateBoardArray(selectedTileRow, selectedTileCol)
-        }
-    }
-
-    const populateBoardArray = (selectedTileRow, selectedTileCol) => {
-        playRound(selectedTileRow, selectedTileCol);
     }
 
     return { printNewRound, getActivePlayer, populateTile, board };

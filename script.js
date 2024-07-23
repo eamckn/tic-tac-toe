@@ -138,22 +138,22 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    const populateTiles = () => {
-
-        for (let i = 0; i < board.board.length; i++) {
-            for (let j = 0; j < board.board[i].length; j++) {
-                pageDisplay.tilesArray[i][j]
-            }
-        }
-
+    const populateTile = (event) => {
+        console.log(event.target)
+        let selectedTile = event.target;
+        selectedTile.textContent = getActivePlayer().value;
     }
 
-    return { printNewRound, getActivePlayer, board };
+    return { printNewRound, getActivePlayer, populateTile, board };
 })();
 
 const pageDisplay =  (function() {
 
     const boardContainer = document.querySelector(".board-container");
+
+    boardContainer.addEventListener("click", GameController.populateTile);
+
+    console.log(boardContainer);
 
     // Tiles
     /*
@@ -183,9 +183,18 @@ const pageDisplay =  (function() {
         }
     }
 
+    const initializeTiles = () => {
+        for (let i = 0; i < GameController.board.board.length; i++) {
+            for (let j = 0; j < GameController.board.board[i].length; j++) {
+                tilesArray2d[i][j].textContent = "";
+                //console.log(tilesArray2d[i][j]);
+            }
+        }
+    }
+
     //console.log(tilesArray2d);
 
-    return { boardContainer, tilesArray2d };
+    return { boardContainer, tilesArray2d, initializeTiles };
 
 })();
 

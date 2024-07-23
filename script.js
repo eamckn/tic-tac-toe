@@ -145,12 +145,14 @@ const GameController = (function( playerOneName = "Player One",
     const populateTile = (event) => {
         //console.log(event.target)
         let selectedTile = event.target;
-        selectedTile.textContent = getActivePlayer().value;
-        let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
-        //console.log(selectedTileRow);
-        let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
-        //console.log(selectedTileCol);
-        populateBoardArray(selectedTileRow, selectedTileCol)
+        if ((selectedTile.textContent !== "X") && (selectedTile.textContent !== "O")) {
+            selectedTile.textContent = getActivePlayer().value;
+            let selectedTileRow = selectedTile.getAttribute("data-rowcol").charAt(0);
+            //console.log(selectedTileRow);
+            let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
+            //console.log(selectedTileCol);
+            populateBoardArray(selectedTileRow, selectedTileCol)
+        }
     }
 
     const populateBoardArray = (selectedTileRow, selectedTileCol) => {

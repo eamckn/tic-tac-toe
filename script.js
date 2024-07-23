@@ -58,7 +58,7 @@ const GameController = (function( playerOneName = "Player One",
     const printNewRound = () => {
         console.log(`${getActivePlayer().name}'s turn.`);
         board.printBoard();
-        askForUserInput();
+        //askForUserInput();
     }
 
     const askForUserInput = () => {
@@ -146,10 +146,11 @@ const GameController = (function( playerOneName = "Player One",
         //console.log(selectedTileRow);
         let selectedTileCol = selectedTile.getAttribute("data-rowcol").charAt(2);
         //console.log(selectedTileCol);
+        populateBoardArray(selectedTileRow, selectedTileCol)
     }
 
-    const populateBoardArray = () => {
-
+    const populateBoardArray = (selectedTileRow, selectedTileCol) => {
+        playRound(selectedTileRow, selectedTileCol);
     }
 
     return { printNewRound, getActivePlayer, populateTile, board };

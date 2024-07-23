@@ -162,20 +162,6 @@ const pageDisplay =  (function() {
 
     boardContainer.addEventListener("click", GameController.populateTile);
 
-    console.log(boardContainer);
-
-    // Tiles
-    /*
-    const tile_00 = document.querySelector("div[data-rowcol = '0-0']");
-    const tile_01 = document.querySelector("div[data-rowcol = '0-1']");
-    const tile_02 = document.querySelector("div[data-rowcol = '0-2']");
-    const tile_10 = document.querySelector("div[data-rowcol = '1-0']");
-    const tile_11 = document.querySelector("div[data-rowcol = '1-1']");
-    const tile_12 = document.querySelector("div[data-rowcol = '1-2']");
-    const tile_20 = document.querySelector("div[data-rowcol = '2-0']");
-    const tile_21 = document.querySelector("div[data-rowcol = '2-1']");
-    const tile_22 = document.querySelector("div[data-rowcol = '2-2']");
-    */
 
     const tiles = document.querySelectorAll(".tile");
     const tilesArray = Array.from(tiles);

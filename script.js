@@ -147,7 +147,7 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { printNewRound, getActivePlayer, populateTile, board };
+    return { getActivePlayer, populateTile, board };
 })();
 
 const pageDisplay =  (function() {

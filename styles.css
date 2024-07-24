@@ -31,6 +31,7 @@ body, html {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     background: url("./imgs/wood-grain-background.jpg");
+    border: 1px solid black;
     border-radius: 20px;
 }
 

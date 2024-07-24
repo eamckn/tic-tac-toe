@@ -14,22 +14,16 @@ body, html {
     height: 100%;
     width: 100%;
 
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 2fr 1fr;
-}
-
-.game-container {
-    grid-column: 1;
-
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .board-container {
-    width: 80%;
-    height: 90%;
+    width: 40%;
+    height: 60%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -44,6 +38,24 @@ body, html {
     font-size: 6rem;
 }
 
+.player-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-sidebar {
+    grid-row: 1;
+    grid-column: 2;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr 1fr;
+    place-items: center;
+}
+
+
+/* CSS for dialog */
 dialog {
     height: 40%;
     min-width: 20%;
@@ -89,24 +101,4 @@ form button {
 form input {
     font-size: 1.15rem;
     padding: .15rem;
-}
-
-.player-name-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-button {
-    width: 50%;
-}
-
-.game-sidebar {
-    grid-row: 1;
-    grid-column: 2;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr 1fr 1fr;
-    place-items: center;
 }

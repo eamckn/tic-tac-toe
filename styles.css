@@ -28,6 +28,7 @@ body, html {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     background: url("./imgs/wood-grain-background.jpg");
+    border-radius: 20px;
 }
 
 .tile {

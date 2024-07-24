@@ -66,23 +66,6 @@ body, html {
     border-bottom: none;
 }
 
-.player-name-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.game-sidebar {
-    grid-row: 1;
-    grid-column: 2;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr 1fr 1fr;
-    place-items: center;
-}
-
-
 /* CSS for dialog */
 dialog {
     height: 40%;

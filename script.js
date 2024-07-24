@@ -35,7 +35,9 @@ function Cell() {
 
     const getValue = () => value;
 
-    return { select, getValue };
+    const resetValue = () => value = 0;
+
+    return { select, getValue, resetValue };
 }
 
 const pageDisplay = () => {
@@ -54,7 +56,7 @@ const pageDisplay = () => {
         }
     }
 
-    function updatePlayerNames (event) {
+    const updatePlayerNames = (event) => {
 
         event.preventDefault();
 
@@ -71,13 +73,39 @@ const pageDisplay = () => {
                 }
             }
         }
+        document.querySelector("input#player_one_name").value = "";
+        document.querySelector("input#player_two_name").value = "";
     }
+
+    const restartGame = () => {
+        let board = GameController.gameboard.board;
+
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                board[i][j].resetValue();
+            }
+        }
+        
+        for (const tile of tilesArray) {
+            tile.textContent = "";
+        }
+
+        if (GameController.getActivePlayer().value === "O") {
+            GameController.switchActivePlayer();
+        }
+
+    }
+
+    const tilesArray = Array.from(document.querySelectorAll(".tile"));
 
     const boardContainer = document.querySelector(".board-container");
     boardContainer.addEventListener("click", populateTile);
 
     const playerNamesButton = document.querySelector("button.player-names")
     playerNamesButton.addEventListener("click", updatePlayerNames);
+
+    const restartGameButton = document.querySelector("button.restart-game");
+    restartGameButton.addEventListener("click", restartGame);
 
     return { boardContainer, populateTile };
 };
@@ -178,5 +206,5 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { getActivePlayer, playRound, gameboard, players };
+    return { getActivePlayer, switchActivePlayer, playRound, gameboard, players };
 })();

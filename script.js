@@ -97,10 +97,12 @@ const pageDisplay = () => {
     const displayWinner = () => {
         let winnerName = GameController.getActivePlayer().name.toUpperCase();
         winnerContent.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
+        winnerDialog.showModal();
     }
 
     const displayTie = () => {
         winnerContent.textContent = "It's a tie! You two should run it back."
+        winnerDialog.showModal();
     }
     
     const dialog = document.querySelector("dialog.player-names");
@@ -120,7 +122,7 @@ const pageDisplay = () => {
 
     boardContainer.setAttribute("has-event", true)
 
-    return { boardContainer, populateTile, displayWinner, displayTie, winnerDialog };
+    return { boardContainer, populateTile, displayWinner, displayTie };
 };
 
 const GameController = (function( playerOneName = "Player One",
@@ -146,14 +148,12 @@ const GameController = (function( playerOneName = "Player One",
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
             display.displayWinner();
-            display.winnerDialog.showModal();
             gameboard.printBoard();
             console.log(`${getActivePlayer().name} wins!`)
             return;
         }
         if (isTie()) {
             display.displayTie();
-            display.winnerDialog.showModal();
             gameboard.printBoard();
             console.log("It's a tie! You two should run it back.");
             return;

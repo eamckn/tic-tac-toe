@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="game-sidebar">
-        <div class="player-name-wrapper">
-            <form action="" id="set-player-names">
+        <dialog class="player-names">
+            <form method="dialog" id="set-player-names">
                 <div class="player-one">
                     <label for="player_one_name">Enter the name of Player 1 (X)</label>
                     <input type="text" id="player_one_name" name="player_one_name">
@@ -33,7 +33,7 @@
                 </div>
             </form>
             <button class="player-names" form="set-player-names">Submit names</button>
-        </div>
+        </dialog>
         <button class="restart-game">Restart game</button>
         <div class="winner-display"></div>
     </div>

@@ -18,6 +18,10 @@ body {
 .game-container {
     grid-row: 1;
     grid-column: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .board-container {

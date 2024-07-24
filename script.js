@@ -91,7 +91,7 @@ const pageDisplay = () => {
             boardContainer.setAttribute("has-event", true)
             boardContainer.addEventListener("click", populateTile);
         }
-        
+
         winnerDisplay.textContent = "";
     }
 
@@ -103,13 +103,17 @@ const pageDisplay = () => {
     const displayTie = () => {
         winnerDisplay.textContent = "It's a tie! You two should run it back."
     }
-
+    
+    const dialog = document.querySelector("dialog");
     const restartGameButton = document.querySelector("button.restart-game");
     const playerNamesButton = document.querySelector("button.player-names")
     const boardContainer = document.querySelector(".board-container");
     const winnerDisplay = document.querySelector("div.winner-display");
     const tilesArray = Array.from(document.querySelectorAll(".tile"));
     
+    document.addEventListener("DOMContentLoaded", () => {
+        dialog.showModal();
+    })
     restartGameButton.addEventListener("click", restartGame);
     playerNamesButton.addEventListener("click", updatePlayerNames);
     boardContainer.addEventListener("click", populateTile);

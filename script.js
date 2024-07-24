@@ -90,6 +90,7 @@ const pageDisplay = () => {
             boardContainer.setAttribute("has-event", true)
             boardContainer.addEventListener("click", populateTile);
         }
+        winnerDisplay.textContent = "";
     }
 
     const displayWinner = () => {

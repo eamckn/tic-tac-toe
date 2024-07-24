@@ -7,6 +7,8 @@
 
 body, html {
     height: 100vh;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .page-content {
@@ -39,7 +41,6 @@ body, html {
 
     border: 1px solid black;
     font-size: 7rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .tile[data-rowcol = "0-0"],
@@ -72,6 +73,7 @@ dialog {
     min-width: 20%;
 
     margin: auto;
+    outline: none;
     padding: 2rem;
     border-radius: 10px;
     background-color: rgb(130, 125, 112);

@@ -46,9 +46,6 @@ const pageDisplay = () => {
         let selectedTile = event.target;
         let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
         let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
-        //console.log(typeof(selectedTileCol));
-        //console.log(selectedTileCol);
-        //console.log(GameController.gameboard.board[selectedTileRow][selectedTileCol].getValue());
         if ((GameController.gameboard.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
             GameController.gameboard.selectCell(selectedTileRow, selectedTileCol);
             GameController.playRound(selectedTileRow, selectedTileCol);
@@ -57,9 +54,7 @@ const pageDisplay = () => {
     }
 
     const updatePlayerNames = (event) => {
-
         event.preventDefault();
-
         let name1 = document.querySelector("input#player_one_name").value;
         let name2 = document.querySelector("input#player_two_name").value;
 
@@ -102,6 +97,10 @@ const pageDisplay = () => {
         winnerDisplay.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
     }
 
+    const displayTie = () => {
+        winnerDisplay.textContent = "It's a tie! You two should run it back."
+    }
+
     const restartGameButton = document.querySelector("button.restart-game");
     const playerNamesButton = document.querySelector("button.player-names")
     const boardContainer = document.querySelector(".board-container");
@@ -114,7 +113,7 @@ const pageDisplay = () => {
 
     boardContainer.setAttribute("has-event", true)
 
-    return { boardContainer, populateTile, displayWinner };
+    return { boardContainer, populateTile, displayWinner, displayTie };
 };
 
 const GameController = (function( playerOneName = "Player One",
@@ -145,6 +144,7 @@ const GameController = (function( playerOneName = "Player One",
             return;
         }
         if (isTie()) {
+            display.displayTie();
             gameboard.printBoard();
             console.log("It's a tie! You two should run it back.");
             return;
@@ -212,6 +212,7 @@ const GameController = (function( playerOneName = "Player One",
             }
         }
         display.boardContainer.removeEventListener('click', display.populateTile);
+        display.boardContainer.removeAttribute("has-event")
         return true;
     }
 

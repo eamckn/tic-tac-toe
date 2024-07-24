@@ -54,8 +54,30 @@ const pageDisplay = () => {
         }
     }
 
+    function updatePlayerNames (event) {
+
+        event.preventDefault();
+
+        let name1 = document.querySelector("input#player_one_name").value;
+        let name2 = document.querySelector("input#player_two_name").value;
+
+        if (name1 !== "" && name2 !== "") {
+            for (const player of GameController.players) {
+                if (player.value === "X") {
+                    player.name = name1;
+                }
+                else {
+                    player.name = name2;
+                }
+            }
+        }
+    }
+
     const boardContainer = document.querySelector(".board-container");
     boardContainer.addEventListener("click", populateTile);
+
+    const playerNamesButton = document.querySelector("button.player-names")
+    playerNamesButton.addEventListener("click", updatePlayerNames);
 
     return { boardContainer, populateTile };
 };
@@ -156,5 +178,5 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { getActivePlayer, playRound, gameboard };
+    return { getActivePlayer, playRound, gameboard, players };
 })();

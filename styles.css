@@ -25,3 +25,7 @@ body, html {
     border: 1px solid black;
     font-size: 6rem;
 }
+
+button {
+    width: 100%;
+}

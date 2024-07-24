@@ -115,7 +115,7 @@ const pageDisplay = () => {
         dialog.showModal();
     })
     restartGameButton.addEventListener("click", restartGame);
-    playerNamesButton.addEventListener("click", updatePlayerNames);
+    //playerNamesButton.addEventListener("click", updatePlayerNames);
     boardContainer.addEventListener("click", populateTile);
 
     boardContainer.setAttribute("has-event", true)

@@ -7,35 +7,37 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <div class="board-container">
-            <div class="tile" data-rowcol="0-0"></div>
-            <div class="tile" data-rowcol="0-1"></div>
-            <div class="tile" data-rowcol="0-2"></div>
-            <div class="tile" data-rowcol="1-0"></div>
-            <div class="tile" data-rowcol="1-1"></div>
-            <div class="tile" data-rowcol="1-2"></div>
-            <div class="tile" data-rowcol="2-0"></div>
-            <div class="tile" data-rowcol="2-1"></div>
-            <div class="tile" data-rowcol="2-2"></div>
+    <dialog class="player-names">
+        <form method="dialog" id="set-player-names">
+            <div class="player-one">
+                <label for="player_one_name">Enter the name of Player 1 (X)</label>
+                <input type="text" id="player_one_name" name="player_one_name">
+            </div>
+            <div class="player-two">
+                <label for="player_two_name">Enter the name of Player 2 (O)</label>
+                <input type="text" name="player_two_name" id="player_two_name">
+            </div>
+        <button class="player-names" form="set-player-names">Submit names</button>
+        </form>
+    </dialog>
+    <div class="page-content">
+        <div class="game-container">
+            <div class="board-container">
+                <div class="tile" data-rowcol="0-0"></div>
+                <div class="tile" data-rowcol="0-1"></div>
+                <div class="tile" data-rowcol="0-2"></div>
+                <div class="tile" data-rowcol="1-0"></div>
+                <div class="tile" data-rowcol="1-1"></div>
+                <div class="tile" data-rowcol="1-2"></div>
+                <div class="tile" data-rowcol="2-0"></div>
+                <div class="tile" data-rowcol="2-1"></div>
+                <div class="tile" data-rowcol="2-2"></div>
+            </div>
         </div>
-    </div>
-    <div class="game-sidebar">
-        <dialog class="player-names">
-            <form method="dialog" id="set-player-names">
-                <div class="player-one">
-                    <label for="player_one_name">Enter the name of Player 1 (X)</label>
-                    <input type="text" id="player_one_name" name="player_one_name">
-                </div>
-                <div class="player-two">
-                    <label for="player_two_name">Enter the name of Player 2 (O)</label>
-                    <input type="text" name="player_two_name" id="player_two_name">
-                </div>
-            </form>
-            <button class="player-names" form="set-player-names">Submit names</button>
-        </dialog>
-        <button class="restart-game">Restart game</button>
-        <div class="winner-display"></div>
+        <div class="game-sidebar">
+            <button class="restart-game">Restart game</button>
+            <div class="winner-display"></div>
+        </div>
     </div>
     
 </body>

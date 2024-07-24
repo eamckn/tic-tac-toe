@@ -46,11 +46,11 @@ const pageDisplay = () => {
         let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
         //console.log(typeof(selectedTileCol));
         //console.log(selectedTileCol);
-        //console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
-        if ((GameController.board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
-            GameController.board.selectCell(selectedTileRow, selectedTileCol);
+        //console.log(GameController.gameboard.board[selectedTileRow][selectedTileCol].getValue());
+        if ((GameController.gameboard.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
+            GameController.gameboard.selectCell(selectedTileRow, selectedTileCol);
             GameController.playRound(selectedTileRow, selectedTileCol);
-            selectedTile.textContent = GameController.board.board[selectedTileRow][selectedTileCol].getValue();
+            selectedTile.textContent = GameController.gameboard.board[selectedTileRow][selectedTileCol].getValue();
         }
     }
 
@@ -62,7 +62,7 @@ const pageDisplay = () => {
 
 const GameController = (function( playerOneName = "Player One",
                                   playerTwoName = "Player Two" ) {
-    const board = Gameboard();
+    const gameboard = Gameboard();
 
     const display = pageDisplay();
 
@@ -82,12 +82,12 @@ const GameController = (function( playerOneName = "Player One",
     const playRound = (row, column) => {
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
-            board.printBoard();
+            gameboard.printBoard();
             console.log(`${getActivePlayer().name} wins!`)
             return;
         }
         if (isTie()) {
-            board.printBoard();
+            gameboard.printBoard();
             console.log("It's a tie! You two should run it back.");
             return;
         }
@@ -97,11 +97,11 @@ const GameController = (function( playerOneName = "Player One",
 
     const printNewRound = () => {
         console.log(`${getActivePlayer().name}'s turn.`);
-        board.printBoard();
+        gameboard.printBoard();
     }
 
     const isWinner = () => {
-        let boardGrid = board.board;
+        let boardGrid = gameboard.board;
         for (const player of players) {
             // Checking 3 in a row along rows
             if (((boardGrid[0][0].getValue() === player.value) &&
@@ -144,7 +144,7 @@ const GameController = (function( playerOneName = "Player One",
     }
 
     const isTie = () => {
-        let boardGrid = board.board;
+        let boardGrid = gameboard.board;
         for (let i = 0; i < boardGrid.length; i++) {
             for (let j = 0; j < boardGrid[i].length; j++) {
                 if (boardGrid[i][j].getValue() === 0) {
@@ -156,5 +156,5 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { getActivePlayer, playRound, board };
+    return { getActivePlayer, playRound, gameboard };
 })();

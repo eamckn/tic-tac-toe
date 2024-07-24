@@ -54,19 +54,6 @@ const GameController = (function( playerOneName = "Player One",
     }
 
     const getActivePlayer = () => activePlayer;
-
-    const populateTile = (event) => {
-        let selectedTile = event.target;
-        let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
-        let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
-        //console.log(typeof(selectedTileCol));
-        //console.log(board.board[selectedTileRow][selectedTileCol].getValue());
-        if ((board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
-            board.selectCell(selectedTileRow, selectedTileCol);
-            playRound(selectedTileRow, selectedTileCol);
-            selectedTile.textContent = board.board[selectedTileRow][selectedTileCol].getValue();
-        }
-    }
     
     const playRound = (row, column) => {
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
@@ -145,16 +132,30 @@ const GameController = (function( playerOneName = "Player One",
         return true;
     }
 
-    return { getActivePlayer, populateTile, board };
+    return { getActivePlayer, playRound, board };
 })();
 
 const pageDisplay =  (function() {
 
+    const populateTile = (event) => {
+        let selectedTile = event.target;
+        let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
+        let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
+        console.log(typeof(selectedTileCol));
+        console.log(selectedTileCol);
+        console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
+        if ((GameController.board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
+            GameController.board.selectCell(selectedTileRow, selectedTileCol);
+            GameController.playRound(selectedTileRow, selectedTileCol);
+            selectedTile.textContent = GameController.board.board[selectedTileRow][selectedTileCol].getValue();
+        }
+    }
+
     const boardContainer = document.querySelector(".board-container");
 
-    boardContainer.addEventListener("click", GameController.populateTile);
+    boardContainer.addEventListener("click", populateTile);
 
-
+    /*
     const tiles = document.querySelectorAll(".tile");
     const tilesArray = Array.from(tiles);
 
@@ -166,6 +167,7 @@ const pageDisplay =  (function() {
             tilesArray2d[i].push(tilesArray.shift());
         }
     }
+    */
 
-    return { boardContainer, tilesArray2d  };
+    return { boardContainer };
 })();

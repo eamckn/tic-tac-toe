@@ -84,16 +84,18 @@ const pageDisplay = () => {
             for (let j = 0; j < board[i].length; j++) {
                 board[i][j].resetValue();
             }
-        }
-        
+        } 
         for (const tile of tilesArray) {
             tile.textContent = "";
         }
-
         if (GameController.getActivePlayer().value === "O") {
             GameController.switchActivePlayer();
         }
+    }
 
+    const displayWinner = () => {
+        let winnerName = GameController.getActivePlayer().name.toUpperCase();
+        winnerDisplay.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
     }
 
     const tilesArray = Array.from(document.querySelectorAll(".tile"));
@@ -107,7 +109,9 @@ const pageDisplay = () => {
     const restartGameButton = document.querySelector("button.restart-game");
     restartGameButton.addEventListener("click", restartGame);
 
-    return { boardContainer, populateTile };
+    const winnerDisplay = document.querySelector("div.winner-display");
+
+    return { boardContainer, populateTile, displayWinner };
 };
 
 const GameController = (function( playerOneName = "Player One",
@@ -132,6 +136,7 @@ const GameController = (function( playerOneName = "Player One",
     const playRound = (row, column) => {
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
+            display.displayWinner();
             gameboard.printBoard();
             console.log(`${getActivePlayer().name} wins!`)
             return;

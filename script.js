@@ -57,20 +57,6 @@ const pageDisplay = () => {
     const boardContainer = document.querySelector(".board-container");
     boardContainer.addEventListener("click", populateTile);
 
-    /*
-    const tiles = document.querySelectorAll(".tile");
-    const tilesArray = Array.from(tiles);
-
-    const tilesArray2d = [];
-
-    for (let i = 0; i < GameController.board.board.length; i++) {
-        tilesArray2d[i] = [];
-        for (let j = 0; j < GameController.board.board[i].length; j++) {
-            tilesArray2d[i].push(tilesArray.shift());
-        }
-    }
-    */
-
     return { boardContainer, populateTile };
 };
 

@@ -38,9 +38,47 @@ function Cell() {
     return { select, getValue };
 }
 
+const pageDisplay = () => {
+
+    const populateTile = (event) => {
+        let selectedTile = event.target;
+        let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
+        let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
+        console.log(typeof(selectedTileCol));
+        console.log(selectedTileCol);
+        console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
+        if ((GameController.board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
+            GameController.board.selectCell(selectedTileRow, selectedTileCol);
+            GameController.playRound(selectedTileRow, selectedTileCol);
+            selectedTile.textContent = GameController.board.board[selectedTileRow][selectedTileCol].getValue();
+        }
+    }
+
+    const boardContainer = document.querySelector(".board-container");
+    boardContainer.addEventListener("click", populateTile);
+
+    /*
+    const tiles = document.querySelectorAll(".tile");
+    const tilesArray = Array.from(tiles);
+
+    const tilesArray2d = [];
+
+    for (let i = 0; i < GameController.board.board.length; i++) {
+        tilesArray2d[i] = [];
+        for (let j = 0; j < GameController.board.board[i].length; j++) {
+            tilesArray2d[i].push(tilesArray.shift());
+        }
+    }
+    */
+
+    return { boardContainer };
+};
+
 const GameController = (function( playerOneName = "Player One",
                                   playerTwoName = "Player Two" ) {
     const board = Gameboard();
+
+    const display = pageDisplay();
 
     const players = [
         createPlayer(playerOneName, "X"),
@@ -113,7 +151,7 @@ const GameController = (function( playerOneName = "Player One",
                 ((boardGrid[0][2].getValue() === player.value) &&
                  (boardGrid[1][1].getValue() === player.value) &&
                  (boardGrid[2][0].getValue() === player.value))) {
-                    pageDisplay.boardContainer.removeEventListener('click', populateTile);
+                    display.boardContainer.removeEventListener('click', populateTile);
                     return true;
                 }            
         }
@@ -128,46 +166,9 @@ const GameController = (function( playerOneName = "Player One",
                 }
             }
         }
-        pageDisplay.boardContainer.removeEventListener('click', populateTile);
+        display.boardContainer.removeEventListener('click', populateTile);
         return true;
     }
 
     return { getActivePlayer, playRound, board };
-})();
-
-const pageDisplay =  (function() {
-
-    const populateTile = (event) => {
-        let selectedTile = event.target;
-        let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
-        let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
-        console.log(typeof(selectedTileCol));
-        console.log(selectedTileCol);
-        console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
-        if ((GameController.board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
-            GameController.board.selectCell(selectedTileRow, selectedTileCol);
-            GameController.playRound(selectedTileRow, selectedTileCol);
-            selectedTile.textContent = GameController.board.board[selectedTileRow][selectedTileCol].getValue();
-        }
-    }
-
-    const boardContainer = document.querySelector(".board-container");
-
-    boardContainer.addEventListener("click", populateTile);
-
-    /*
-    const tiles = document.querySelectorAll(".tile");
-    const tilesArray = Array.from(tiles);
-
-    const tilesArray2d = [];
-
-    for (let i = 0; i < GameController.board.board.length; i++) {
-        tilesArray2d[i] = [];
-        for (let j = 0; j < GameController.board.board[i].length; j++) {
-            tilesArray2d[i].push(tilesArray.shift());
-        }
-    }
-    */
-
-    return { boardContainer };
 })();

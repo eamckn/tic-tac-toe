@@ -21,6 +21,7 @@ function Gameboard() {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
         console.table(boardWithCellValues);
     }
+
     return { selectCell, printBoard, board };
 }
 
@@ -90,6 +91,7 @@ const pageDisplay = () => {
             boardContainer.setAttribute("has-event", true)
             boardContainer.addEventListener("click", populateTile);
         }
+        
         winnerDisplay.textContent = "";
     }
 

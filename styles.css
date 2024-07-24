@@ -9,8 +9,19 @@ body, html {
     height: 100%;
 }
 
+body {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 1fr;
+}
+
+.game-container {
+    grid-row: 1;
+    grid-column: 1;
+}
+
 .board-container {
-    width: 50%;
+    width: 80%;
     height: 80%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -24,6 +35,14 @@ body, html {
 
     border: 1px solid black;
     font-size: 6rem;
+}
+
+.game-sidebar {
+    grid-row: 1;
+    grid-column: 2;
+
+    display: flex;
+    flex-direction: column;
 }
 
 button {

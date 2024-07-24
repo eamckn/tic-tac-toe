@@ -91,23 +91,24 @@ const pageDisplay = () => {
             boardContainer.addEventListener("click", populateTile);
         }
 
-        winnerDisplay.textContent = "";
+        winnerDialog.textContent = "";
     }
 
     const displayWinner = () => {
         let winnerName = GameController.getActivePlayer().name.toUpperCase();
-        winnerDisplay.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
+        winnerContent.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
     }
 
     const displayTie = () => {
-        winnerDisplay.textContent = "It's a tie! You two should run it back."
+        winnerContent.textContent = "It's a tie! You two should run it back."
     }
     
-    const dialog = document.querySelector("dialog");
+    const dialog = document.querySelector("dialog.player-names");
     const restartGameButton = document.querySelector("button.restart-game");
     const playerNamesButton = document.querySelector("button.player-names")
     const boardContainer = document.querySelector(".board-container");
-    const winnerDisplay = document.querySelector("div.winner-display");
+    const winnerDialog = document.querySelector(".winner-dialog");
+    const winnerContent = document.querySelector("p.winner-content")
     const tilesArray = Array.from(document.querySelectorAll(".tile"));
     
     document.addEventListener("DOMContentLoaded", () => {
@@ -119,7 +120,7 @@ const pageDisplay = () => {
 
     boardContainer.setAttribute("has-event", true)
 
-    return { boardContainer, populateTile, displayWinner, displayTie };
+    return { boardContainer, populateTile, displayWinner, displayTie, winnerDialog };
 };
 
 const GameController = (function( playerOneName = "Player One",
@@ -145,6 +146,7 @@ const GameController = (function( playerOneName = "Player One",
         console.log(`${getActivePlayer().name} placed an ${getActivePlayer().value} on row ${row}, column ${column}.`);
         if (isWinner()) {
             display.displayWinner();
+            display.winnerDialog.showModal();
             gameboard.printBoard();
             console.log(`${getActivePlayer().name} wins!`)
             return;

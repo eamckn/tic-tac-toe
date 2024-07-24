@@ -153,6 +153,7 @@ const GameController = (function( playerOneName = "Player One",
         }
         if (isTie()) {
             display.displayTie();
+            display.winnerDialog.showModal();
             gameboard.printBoard();
             console.log("It's a tie! You two should run it back.");
             return;

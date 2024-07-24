@@ -54,8 +54,7 @@ const pageDisplay = () => {
         }
     }
 
-    const updatePlayerNames = (event) => {
-        event.preventDefault();
+    const updatePlayerNames = () => {
         let name1 = document.querySelector("input#player_one_name").value;
         let name2 = document.querySelector("input#player_two_name").value;
 
@@ -115,7 +114,7 @@ const pageDisplay = () => {
         dialog.showModal();
     })
     restartGameButton.addEventListener("click", restartGame);
-    //playerNamesButton.addEventListener("click", updatePlayerNames);
+    playerNamesButton.addEventListener("click", updatePlayerNames);
     boardContainer.addEventListener("click", populateTile);
 
     boardContainer.setAttribute("has-event", true)

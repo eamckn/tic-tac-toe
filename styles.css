@@ -16,7 +16,6 @@ body {
 }
 
 .game-container {
-    grid-row: 1;
     grid-column: 1;
 
     display: flex;
@@ -45,8 +44,9 @@ body {
     grid-row: 1;
     grid-column: 2;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr 1fr;
 }
 
 button {

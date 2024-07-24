@@ -91,6 +91,10 @@ const pageDisplay = () => {
         if (GameController.getActivePlayer().value === "O") {
             GameController.switchActivePlayer();
         }
+        if (!boardContainer.hasAttribute('has-event')) {
+            boardContainer.setAttribute("has-event", true)
+            boardContainer.addEventListener("click", populateTile);
+        }
     }
 
     const displayWinner = () => {
@@ -98,18 +102,17 @@ const pageDisplay = () => {
         winnerDisplay.textContent = `CONGRATULATIONS ${winnerName}! YOU WIN!`
     }
 
-    const tilesArray = Array.from(document.querySelectorAll(".tile"));
-
+    const restartGameButton = document.querySelector("button.restart-game");
+    const playerNamesButton = document.querySelector("button.player-names")
     const boardContainer = document.querySelector(".board-container");
+    const winnerDisplay = document.querySelector("div.winner-display");
+    const tilesArray = Array.from(document.querySelectorAll(".tile"));
+    
+    restartGameButton.addEventListener("click", restartGame);
+    playerNamesButton.addEventListener("click", updatePlayerNames);
     boardContainer.addEventListener("click", populateTile);
 
-    const playerNamesButton = document.querySelector("button.player-names")
-    playerNamesButton.addEventListener("click", updatePlayerNames);
-
-    const restartGameButton = document.querySelector("button.restart-game");
-    restartGameButton.addEventListener("click", restartGame);
-
-    const winnerDisplay = document.querySelector("div.winner-display");
+    boardContainer.setAttribute("has-event", true)
 
     return { boardContainer, populateTile, displayWinner };
 };
@@ -193,6 +196,7 @@ const GameController = (function( playerOneName = "Player One",
                  (boardGrid[1][1].getValue() === player.value) &&
                  (boardGrid[2][0].getValue() === player.value))) {
                     display.boardContainer.removeEventListener('click', display.populateTile);
+                    display.boardContainer.removeAttribute("has-event")
                     return true;
                 }            
         }

@@ -7,7 +7,6 @@
 
 body, html {
     height: 100vh;
-    position: relative;
 }
 
 .page-content {
@@ -19,6 +18,8 @@ body, html {
 
     align-items: center;
     justify-content: space-evenly;
+
+    background-color: rgb(130, 125, 112);
 }
 
 .board-container {
@@ -90,6 +91,7 @@ dialog {
     margin: auto;
     padding: 2rem;
     border-radius: 10px;
+    background-color: rgb(130, 125, 112);
 
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
@@ -128,4 +130,5 @@ form button {
 form input {
     font-size: 1.15rem;
     padding: .15rem;
+    outline: none;
 }

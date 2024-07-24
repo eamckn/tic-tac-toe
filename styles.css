@@ -40,6 +40,30 @@ body, html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.tile[data-rowcol = "0-0"],
+.tile[data-rowcol = "1-0"],
+.tile[data-rowcol = "2-0"] {
+    border-left: none;
+}
+
+.tile[data-rowcol = "0-0"],
+.tile[data-rowcol = "0-1"],
+.tile[data-rowcol = "0-2"] {
+    border-top: none;
+}
+
+.tile[data-rowcol = "0-2"],
+.tile[data-rowcol = "1-2"],
+.tile[data-rowcol = "2-2"] {
+    border-right: none;
+}
+
+.tile[data-rowcol = "2-0"],
+.tile[data-rowcol = "2-1"],
+.tile[data-rowcol = "2-2"] {
+    border-bottom: none;
+}
+
 .player-name-wrapper {
     display: flex;
     flex-direction: column;

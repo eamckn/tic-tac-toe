@@ -44,9 +44,9 @@ const pageDisplay = () => {
         let selectedTile = event.target;
         let selectedTileRow = Number(selectedTile.getAttribute("data-rowcol").charAt(0));
         let selectedTileCol = Number(selectedTile.getAttribute("data-rowcol").charAt(2));
-        console.log(typeof(selectedTileCol));
-        console.log(selectedTileCol);
-        console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
+        //console.log(typeof(selectedTileCol));
+        //console.log(selectedTileCol);
+        //console.log(GameController.board.board[selectedTileRow][selectedTileCol].getValue());
         if ((GameController.board.board[selectedTileRow][selectedTileCol].getValue() === 0)) {
             GameController.board.selectCell(selectedTileRow, selectedTileCol);
             GameController.playRound(selectedTileRow, selectedTileCol);
@@ -71,7 +71,7 @@ const pageDisplay = () => {
     }
     */
 
-    return { boardContainer };
+    return { boardContainer, populateTile };
 };
 
 const GameController = (function( playerOneName = "Player One",
@@ -151,7 +151,7 @@ const GameController = (function( playerOneName = "Player One",
                 ((boardGrid[0][2].getValue() === player.value) &&
                  (boardGrid[1][1].getValue() === player.value) &&
                  (boardGrid[2][0].getValue() === player.value))) {
-                    display.boardContainer.removeEventListener('click', populateTile);
+                    display.boardContainer.removeEventListener('click', display.populateTile);
                     return true;
                 }            
         }
@@ -166,7 +166,7 @@ const GameController = (function( playerOneName = "Player One",
                 }
             }
         }
-        display.boardContainer.removeEventListener('click', populateTile);
+        display.boardContainer.removeEventListener('click', display.populateTile);
         return true;
     }
 
